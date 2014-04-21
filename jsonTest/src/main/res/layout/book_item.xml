@@ -7,17 +7,22 @@
 
     <ImageView
         android:id="@+id/cover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitCenter"
+        android:layout_margin="8dp"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/cover" />
+        android:layout_toRightOf="@id/cover"
+        android:textSize="16sp"/>
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"/>
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/cover"
+        android:textSize="12sp"/>
 </RelativeLayout>

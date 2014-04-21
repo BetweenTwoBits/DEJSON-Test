@@ -2,8 +2,6 @@ package com.bdavis.dejsontest.jsontest;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,8 +22,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.koushikdutta.ion.Ion;
 
 public class MainActivity extends Activity {
 
@@ -55,7 +54,7 @@ public class MainActivity extends Activity {
         if (networkInfo != null && networkInfo.isConnected()) {
             new DownloadWebpageTask().execute(booksUrl);
         } else {
-            //textView.setText("No network connection available");
+            Log.e(DEBUG_TAG, "No network connection available");
         }
 
     }
@@ -73,7 +72,6 @@ public class MainActivity extends Activity {
 
         @Override
         protected void onPostExecute(Book[] books) {
-            Log.e(DEBUG_TAG, "onPostExecute: " + books.length);
             mBookAdapter.addAll(books);
         }
     }
@@ -112,8 +110,7 @@ public class MainActivity extends Activity {
     private class Book {
         private String title;
         private String imageURL;
-        //private String author;
-        private Bitmap cover;
+        private String author;
 
         public String getTitle() {
             return title;
@@ -121,8 +118,7 @@ public class MainActivity extends Activity {
         public String getImageUrl() {
             return imageURL;
         }
-        //public String getAuthor() { return author; }
-        public Bitmap getCover () { return cover; }
+        public String getAuthor() { return author; }
     }
 
     private class BookAdapter extends ArrayAdapter<Book> {
@@ -133,20 +129,23 @@ public class MainActivity extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Log.e(DEBUG_TAG, "getView");
-            Log.e(DEBUG_TAG, "getCount: " + getCount());
             RelativeLayout bookItem = (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.book_item, parent, false);
             TextView title = (TextView) bookItem.findViewById(R.id.title);
-            //TextView author = (TextView) bookItem.findViewById(R.id.author);
+            TextView author = (TextView) bookItem.findViewById(R.id.author);
             ImageView cover = (ImageView) bookItem.findViewById(R.id.cover);
 
-            //TODO get image from url in the array rather than fill empty slot with filler image
-            cover.setImageResource(R.drawable.ic_launcher);
-            //cover.setImageBitmap(getItem(position).getCover());
             title.setText(getItem(position).getTitle());
-            //if(getItem(position).getAuthor() != null){
-                //author.setText(getItem(position).getAuthor());
-            //}
+
+            if(getItem(position).getAuthor() != null){
+                author.setText("Author: " + getItem(position).getAuthor());
+            }
+
+            Ion.with(getContext())
+                    .load(getItem(position).getImageUrl())
+                    .withBitmap()
+                    .placeholder(R.drawable.ic_launcher)
+                    .intoImageView(cover);
+
             return bookItem;
         }
     }
