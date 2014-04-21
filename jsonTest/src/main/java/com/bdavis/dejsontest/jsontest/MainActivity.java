@@ -16,16 +16,16 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.koushikdutta.ion.Ion;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.koushikdutta.ion.Ion;
 
 public class MainActivity extends Activity {
 
@@ -59,27 +59,10 @@ public class MainActivity extends Activity {
 
     }
 
-    private class DownloadWebpageTask extends AsyncTask<String, Void, Book[]> {
-        @Override
-        protected Book[] doInBackground(String... urls) {
-            try {
-                return downloadUrl(urls[0]);
-            } catch (IOException e) {
-                Log.e(DEBUG_TAG, "Exception:" + e);
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Book[] books) {
-            mBookAdapter.addAll(books);
-        }
-    }
-
     private Book[] downloadUrl(String myUrl) throws IOException {
         InputStream is = null;
 
-        try{
+        try {
             URL url = new URL(myUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
@@ -107,6 +90,23 @@ public class MainActivity extends Activity {
         return gson.fromJson(reader, Book[].class);
     }
 
+    private class DownloadWebpageTask extends AsyncTask<String, Void, Book[]> {
+        @Override
+        protected Book[] doInBackground(String... urls) {
+            try {
+                return downloadUrl(urls[0]);
+            } catch (IOException e) {
+                Log.e(DEBUG_TAG, "Exception:" + e);
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Book[] books) {
+            mBookAdapter.addAll(books);
+        }
+    }
+
     private class Book {
         private String title;
         private String imageURL;
@@ -115,10 +115,14 @@ public class MainActivity extends Activity {
         public String getTitle() {
             return title;
         }
+
         public String getImageUrl() {
             return imageURL;
         }
-        public String getAuthor() { return author; }
+
+        public String getAuthor() {
+            return author;
+        }
     }
 
     private class BookAdapter extends ArrayAdapter<Book> {
@@ -136,7 +140,7 @@ public class MainActivity extends Activity {
 
             title.setText(getItem(position).getTitle());
 
-            if(getItem(position).getAuthor() != null){
+            if (getItem(position).getAuthor() != null) {
                 author.setText("Author: " + getItem(position).getAuthor());
             }
 

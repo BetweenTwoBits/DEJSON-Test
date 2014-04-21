@@ -2,27 +2,33 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent" >
 
     <ImageView
         android:id="@+id/cover"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_alignParentLeft="true"
-        android:scaleType="fitCenter"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"
+        android:contentDescription="@string/product_image" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/cover"
-        android:textSize="16sp"/>
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp" />
+
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_toRightOf="@id/cover"
-        android:textSize="12sp"/>
+        android:layout_marginBottom="8dp"
+        android:textSize="12sp" />
+
 </RelativeLayout>
