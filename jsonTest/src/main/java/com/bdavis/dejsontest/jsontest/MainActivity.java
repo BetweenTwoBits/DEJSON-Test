@@ -10,11 +10,10 @@ import android.widget.ListView;
 
 import com.bdavis.dejsontest.adapters.BookAdapter;
 import com.bdavis.dejsontest.data.Book;
-import com.bdavis.dejsontest.data.DownloadWebpageTask;
+import com.bdavis.dejsontest.data.DownloadBook;
 import com.bdavis.dejsontest.data.NetworkListener;
 
 public class MainActivity extends Activity {
-
     private static final String booksUrl = "http://de-coding-test.s3.amazonaws.com/books.json";
     private static final String DEBUG_TAG = MainActivity.class.getSimpleName();
     private BookAdapter mBookAdapter;
@@ -38,7 +37,7 @@ public class MainActivity extends Activity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            new DownloadWebpageTask(new NetworkListener<Book[]>() {
+            new DownloadBook(new NetworkListener<Book[]>() {
                 @Override
                 public void onNetworkComplete(Book[] result) {
                     mBookAdapter.addAll(result);
@@ -48,7 +47,7 @@ public class MainActivity extends Activity {
                 public void onNetworkFailed() {
                     Log.e(DEBUG_TAG, "Network failed.");
                 }
-            }).execute(booksUrl);
+            }).loadUrl(booksUrl);
         } else {
             Log.e(DEBUG_TAG, "No network connection available");
         }

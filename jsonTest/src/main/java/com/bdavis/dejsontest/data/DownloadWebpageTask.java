@@ -20,6 +20,7 @@ import java.net.URL;
 public class DownloadWebpageTask extends AsyncTask<String, Void, Book[]> {
     private NetworkListener<Book[]> mListener;
     private String DEBUG_TAG = DownloadWebpageTask.class.getSimpleName();
+
     public DownloadWebpageTask(NetworkListener<Book[]> listener) {
         mListener = listener;
     }
@@ -29,7 +30,6 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, Book[]> {
         try {
             return downloadUrl(urls[0]);
         } catch (IOException e) {
-
             return null;
         }
     }
