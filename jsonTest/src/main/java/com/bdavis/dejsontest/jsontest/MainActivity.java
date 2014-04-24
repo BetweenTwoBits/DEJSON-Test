@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.book_list);
 
         connectionCheck();
 
@@ -32,9 +32,12 @@ public class MainActivity extends Activity {
 
     public void connectionCheck() {
 
+        //start new connection manager
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        //get connection info from connection manager
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
         if (networkInfo != null && networkInfo.isConnected()) {
 
             new DownloadBook(new NetworkListener<Book[]>() {
