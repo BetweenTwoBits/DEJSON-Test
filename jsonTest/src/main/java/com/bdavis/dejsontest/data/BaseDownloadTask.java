@@ -11,9 +11,10 @@ import java.net.URL;
 /**
  * Created by brandondavis on 4/22/14.
  */
+
 public abstract class BaseDownloadTask<T>{
     private NetworkListener<T> mListener;
-    private String DEBUG_TAG = DownloadWebpageTask.class.getSimpleName();
+    private String DEBUG_TAG = BaseDownloadTask.class.getSimpleName();
 
     public BaseDownloadTask(NetworkListener<T> listener) {
         mListener = listener;

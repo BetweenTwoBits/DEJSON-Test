@@ -11,6 +11,7 @@ import java.io.Reader;
 /**
  * Created by brandondavis on 4/22/14.
  */
+
 public class DownloadBook extends BaseDownloadTask<Book[]> {
 
     public DownloadBook(NetworkListener<Book[]> listener) {
