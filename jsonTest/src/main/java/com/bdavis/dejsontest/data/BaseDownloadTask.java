@@ -8,10 +8,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by brandondavis on 4/22/14.
- */
-
 public abstract class BaseDownloadTask<T>{
     private NetworkListener<T> mListener;
     private String DEBUG_TAG = BaseDownloadTask.class.getSimpleName();

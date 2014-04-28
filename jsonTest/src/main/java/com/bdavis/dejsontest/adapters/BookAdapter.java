@@ -13,10 +13,6 @@ import com.bdavis.dejsontest.data.Book;
 import com.bdavis.dejsontest.jsontest.R;
 import com.koushikdutta.ion.Ion;
 
-/**
- * Created by brandondavis on 4/21/14.
- */
-
 public class BookAdapter extends ArrayAdapter<Book> {
 
     public BookAdapter(Context context, int resource) {
