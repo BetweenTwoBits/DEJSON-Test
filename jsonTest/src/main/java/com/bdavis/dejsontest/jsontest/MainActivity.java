@@ -18,10 +18,8 @@ import com.bdavis.dejsontest.data.NetworkListener;
 public class MainActivity extends ListActivity {
     private static final String booksUrl = "http://de-coding-test.s3.amazonaws.com/books.json";
     private static final String TAG = MainActivity.class.getSimpleName();
-    private CursorBookAdapter mCursorAdapter;
     private SQLiteDatabase db = null;
     private DatabaseHandler dbHandler = new DatabaseHandler(this);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +30,22 @@ public class MainActivity extends ListActivity {
         Cursor cursor = dbHandler.allRowsToCursor();
         connectionCheck();
 
-        mCursorAdapter = new CursorBookAdapter(this,
-                                                 R.layout.book_item,
-                                                 cursor,
-                                                 new String[] { "title", "author" },
-                                                 new int[] { R.id.title, R.id.author },
-                                                 0);
+        CursorBookAdapter mCursorAdapter = new CursorBookAdapter(this,
+                R.layout.book_item,
+                cursor,
+                new String[]{"title", "author"},
+                new int[]{R.id.title, R.id.author},
+                0);
         this.setListAdapter(mCursorAdapter);
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         db.close();
     }
 
     public void connectionCheck() {
-
         //start new connection manager
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 

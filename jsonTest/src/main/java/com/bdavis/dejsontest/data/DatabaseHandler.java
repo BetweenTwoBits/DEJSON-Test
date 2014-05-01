@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.bdavis.dejsontest.jsontest.MainActivity;
-
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "books";
@@ -52,22 +50,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    public void insertBooks(Book[] book) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void insertBooks(Book[] books) {
         ContentValues values = new ContentValues();
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        for (int i = 0; i < book.length; i++) {
-            values.put(COLUMN_NAME_BOOK_TITLE, book[i].getTitle());
-            values.put(COLUMN_NAME_BOOK_AUTHOR, book[i].getAuthor());
-            values.put(COLUMN_NAME_BOOK_IMAGE_URL, book[i].getImageUrl());
+        for (Book book : books) {
+            values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
+            values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
+            values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
             db.insert(TABLE_NAME, null, values);
         }
     }
 
     public Cursor allRowsToCursor() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        return c;
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
     public String getColumnNameBookTitle() {

@@ -17,8 +17,8 @@ import com.koushikdutta.ion.Ion;
 public class CursorBookAdapter extends SimpleCursorAdapter {
 
     private Context context;
-    private ViewHolder holder;
     private DatabaseHandler dbHandler = new DatabaseHandler(context);
+    private ViewHolder holder;
     private int layout;
 
     public CursorBookAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
@@ -55,18 +55,15 @@ public class CursorBookAdapter extends SimpleCursorAdapter {
         int imageUrlCol = cursor.getColumnIndex(dbHandler.getColumnNameBookImageUrl());
         String imageURL = cursor.getString(imageUrlCol);
 
-
-
         holder.title.setText(title);
 
-        if(!TextUtils.isEmpty(author)) {
+        if (!TextUtils.isEmpty(author)) {
             holder.author.setText("Author: " + author);
             holder.author.setVisibility(View.VISIBLE);
         } else {
             holder.author.setText("");
             holder.author.setVisibility(View.GONE);
         }
-
 
         Ion.with(context)
                 .load(imageURL)
