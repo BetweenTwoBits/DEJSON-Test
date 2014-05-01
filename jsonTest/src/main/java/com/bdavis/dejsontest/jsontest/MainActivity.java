@@ -1,33 +1,50 @@
 package com.bdavis.dejsontest.jsontest;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
 
-import com.bdavis.dejsontest.adapters.BookAdapter;
+import com.bdavis.dejsontest.adapters.CursorBookAdapter;
 import com.bdavis.dejsontest.data.Book;
+import com.bdavis.dejsontest.data.DatabaseHandler;
 import com.bdavis.dejsontest.data.DownloadBook;
 import com.bdavis.dejsontest.data.NetworkListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
     private static final String booksUrl = "http://de-coding-test.s3.amazonaws.com/books.json";
-    private static final String DEBUG_TAG = MainActivity.class.getSimpleName();
-    private BookAdapter mBookAdapter;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private CursorBookAdapter mCursorAdapter;
+    private SQLiteDatabase db = null;
+    private DatabaseHandler dbHandler = new DatabaseHandler(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
+        db = new DatabaseHandler(this).getWritableDatabase();
+        Cursor cursor = dbHandler.allRowsToCursor();
         connectionCheck();
 
-        ListView listView = (ListView) findViewById(R.id.book_list);
-        mBookAdapter = new BookAdapter(this, android.R.layout.simple_list_item_1);
-        listView.setAdapter(mBookAdapter);
+        mCursorAdapter = new CursorBookAdapter(this,
+                                                 R.layout.book_item,
+                                                 cursor,
+                                                 new String[] { "title", "author" },
+                                                 new int[] { R.id.title, R.id.author },
+                                                 0);
+        this.setListAdapter(mCursorAdapter);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        db.close();
     }
 
     public void connectionCheck() {
@@ -43,16 +60,16 @@ public class MainActivity extends Activity {
             new DownloadBook(new NetworkListener<Book[]>() {
                 @Override
                 public void onNetworkComplete(Book[] result) {
-                    mBookAdapter.addAll(result);
+                    dbHandler.insertBooks(result);
                 }
 
                 @Override
                 public void onNetworkFailed() {
-                    Log.e(DEBUG_TAG, "Network failed.");
+                    Log.e(TAG, "Network failed.");
                 }
             }).loadUrl(booksUrl);
         } else {
-            Log.e(DEBUG_TAG, "No network connection available");
+            Log.e(TAG, "No network connection available");
         }
     }
 }

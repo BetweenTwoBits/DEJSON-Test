@@ -20,6 +20,5 @@ public class DownloadBook extends BaseDownloadTask<Book[]> {
             reader = new InputStreamReader(stream, "UTF-8");
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(reader, Book[].class);
-
     }
 }

@@ -10,7 +10,7 @@ import java.net.URL;
 
 public abstract class BaseDownloadTask<T>{
     private NetworkListener<T> mListener;
-    private String DEBUG_TAG = BaseDownloadTask.class.getSimpleName();
+    private String TAG = BaseDownloadTask.class.getSimpleName();
 
     public BaseDownloadTask(NetworkListener<T> listener) {
         mListener = listener;
@@ -49,7 +49,7 @@ public abstract class BaseDownloadTask<T>{
                 conn.setDoInput(true);
                 conn.connect();
                 int response = conn.getResponseCode();
-                Log.d(DEBUG_TAG, "The response is: " + response);
+                Log.d(TAG, "The response is: " + response);
                 is = conn.getInputStream();
 
                 return readIt(is);
