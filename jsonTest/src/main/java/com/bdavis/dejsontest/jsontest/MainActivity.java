@@ -31,11 +31,11 @@ public class MainActivity extends ListActivity {
 
         connectionCheck();
 
-        //Cursor cursor = dbHandler.allRowsToCursor();
+        Cursor cursor = dbHandler.allRowsToCursor();
 
         mBookAdapter = new CursorBookAdapter(this,
                 R.layout.book_item,
-                null,
+                cursor,
                 new String[]{"title", "author"},
                 new int[]{R.id.title, R.id.author},
                 0);

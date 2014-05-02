@@ -44,13 +44,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.execSQL("DELETE FROM " + TABLE_NAME);
-
-        for (Book book : books) {
-            values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
-            values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
-            values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
-            db.insert(TABLE_NAME, null, values);
+        if (books.length != allRowsToCursor().getCount()) {
+            for (Book book : books) {
+                values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
+                values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
+                values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
+                db.insert(TABLE_NAME, null, values);
+            }
         }
     }
 
