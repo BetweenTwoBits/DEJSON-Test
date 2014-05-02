@@ -31,11 +31,11 @@ public class MainActivity extends ListActivity {
 
         connectionCheck();
 
-        Cursor cursor = dbHandler.allRowsToCursor();
+        //Cursor cursor = dbHandler.allRowsToCursor();
 
         mBookAdapter = new CursorBookAdapter(this,
                 R.layout.book_item,
-                cursor,
+                null,
                 new String[]{"title", "author"},
                 new int[]{R.id.title, R.id.author},
                 0);
@@ -62,6 +62,8 @@ public class MainActivity extends ListActivity {
                 @Override
                 public void onNetworkComplete(Book[] result) {
                     dbHandler.insertBooks(result);
+                    Cursor cursor = dbHandler.allRowsToCursor();
+                    mBookAdapter.swapCursor(cursor);
                 }
 
                 @Override
