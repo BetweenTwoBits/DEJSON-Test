@@ -20,6 +20,7 @@ public class MainActivity extends ListActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private SQLiteDatabase db = null;
     private DatabaseHandler dbHandler = new DatabaseHandler(this);
+    private CursorBookAdapter mBookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +28,19 @@ public class MainActivity extends ListActivity {
         setContentView(R.layout.book_list);
 
         db = new DatabaseHandler(this).getWritableDatabase();
-        Cursor cursor = dbHandler.allRowsToCursor();
+
         connectionCheck();
 
-        CursorBookAdapter mCursorAdapter = new CursorBookAdapter(this,
+        Cursor cursor = dbHandler.allRowsToCursor();
+
+        mBookAdapter = new CursorBookAdapter(this,
                 R.layout.book_item,
                 cursor,
                 new String[]{"title", "author"},
                 new int[]{R.id.title, R.id.author},
                 0);
-        this.setListAdapter(mCursorAdapter);
+        setListAdapter(mBookAdapter);
+
     }
 
     @Override

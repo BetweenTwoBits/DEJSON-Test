@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
+    private static final String TAG = DatabaseHandler.class.getSimpleName();
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "books";
     private static final String DATABASE_NAME = "books.db";
@@ -22,6 +23,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        createDB(db);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+
+        createDB(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+
+        createDB(db);
+    }
+
+    public void insertBooks(Book[] books) {
+        ContentValues values = new ContentValues();
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+
+        for (Book book : books) {
+            values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
+            values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
+            values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
+            db.insert(TABLE_NAME, null, values);
+        }
+    }
+
+    public void createDB(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE "
                 + TABLE_NAME
                 + " ("
@@ -36,30 +69,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + ");";
         Log.e("TAG", CREATE_TABLE);
         db.execSQL(CREATE_TABLE);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-
-        onCreate(db);
-    }
-
-    @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade(db, oldVersion, newVersion);
-    }
-
-    public void insertBooks(Book[] books) {
-        ContentValues values = new ContentValues();
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        for (Book book : books) {
-            values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
-            values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
-            values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
-            db.insert(TABLE_NAME, null, values);
-        }
     }
 
     public Cursor allRowsToCursor() {
