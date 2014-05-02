@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.IOException;
+
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TAG = DatabaseHandler.class.getSimpleName();
     private static final int DATABASE_VERSION = 1;
@@ -45,11 +47,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         if (books.length != allRowsToCursor().getCount()) {
-            for (Book book : books) {
-                values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
-                values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
-                values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
-                db.insert(TABLE_NAME, null, values);
+            db.beginTransaction();
+
+            try {
+                for (Book book : books) {
+                    values.put(COLUMN_NAME_BOOK_TITLE, book.getTitle());
+                    values.put(COLUMN_NAME_BOOK_AUTHOR, book.getAuthor());
+                    values.put(COLUMN_NAME_BOOK_IMAGE_URL, book.getImageUrl());
+                    db.insert(TABLE_NAME, null, values);
+                }
+                db.setTransactionSuccessful();
+            } finally {
+                db.endTransaction();
             }
         }
     }
