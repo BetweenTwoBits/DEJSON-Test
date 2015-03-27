@@ -1,17 +1,17 @@
 package com.bdavis.dejsontest.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bdavis.dejsontest.data.Book;
 import com.bdavis.dejsontest.jsontest.R;
-import com.koushikdutta.ion.Ion;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class BookAdapter extends ArrayAdapter<Book> {
 
@@ -30,7 +30,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.author = (TextView) convertView.findViewById(R.id.author);
-            holder.cover = (ImageView) convertView.findViewById(R.id.cover);
+            holder.cover = (SimpleDraweeView) convertView.findViewById(R.id.cover);
 
             convertView.setTag(holder);
 
@@ -50,18 +50,18 @@ public class BookAdapter extends ArrayAdapter<Book> {
             holder.author.setVisibility(View.GONE);
         }
 
-        Ion.with(getContext())
-                .load(getItem(position).getImageUrl())
-                .withBitmap()
-                .placeholder(R.drawable.ic_launcher)
-                .intoImageView(holder.cover);
+        String url = getItem(position).getImageUrl();
+        if (url != null) {
+            Uri coverUri = Uri.parse(url);
+            holder.cover.setImageURI(coverUri);
+        }
 
         return convertView;
     }
 
     private static class ViewHolder {
         public TextView title;
-        public ImageView cover;
+        public SimpleDraweeView cover;
         public TextView author;
     }
 }

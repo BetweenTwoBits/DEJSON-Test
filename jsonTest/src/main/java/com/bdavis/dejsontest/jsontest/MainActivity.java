@@ -12,6 +12,7 @@ import com.bdavis.dejsontest.adapters.BookAdapter;
 import com.bdavis.dejsontest.data.Book;
 import com.bdavis.dejsontest.data.DownloadBook;
 import com.bdavis.dejsontest.data.NetworkListener;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class MainActivity extends Activity {
     private static final String booksUrl = "http://de-coding-test.s3.amazonaws.com/books.json";
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
-
+        Fresco.initialize(this);
         connectionCheck();
 
         ListView listView = (ListView) findViewById(R.id.book_list);

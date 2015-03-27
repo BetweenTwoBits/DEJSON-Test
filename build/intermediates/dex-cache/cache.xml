@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d7f8990aabff2a7b5a3b6bcd2a8ea2a1e23c293b">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/classes-feffde199a678cd34a0ee83fd16a71dec4578a63.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/javax.annotation-api-1.2-caeb4f9f8c86dc83a3782bf7858fa98313e2e1dc.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/gson-2.3-455b431ef54aa81e27f5c0b042c5e609317a881a.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fc2b0f606d055d1bb0ac59889be210db89278363">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/classes-cacf467cff1478756f326899012e9579aa2efb47.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ac307801bddb76621df8d2d96b5b378a6e615d4b">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/classes-b3173dd46d86f65e305ba034972e8e9f4a9a47b8.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/jsr305-3.0.0-62eafa72eb691384baba9795e513dc7145071257.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/Workspace/SDKs/android/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-2a0266498a8da5d27f287838e2355410be800e74.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-204dfa1c2bba3bf26250cfae0cf131f142a3852f.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-a0b760957bd15dba7a20591d86d497e771074e3b.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/classes-3bf06c73a2e7d57c5fa2aed9753c7466b7af40ed.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d828c72c628984cbaf8669a500726f0c0e6adb59">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/classes-5f465e00c4cb7955e79fd6fc787ce2ef314bb8b8.jar" />
+    </item>
+    <item
+        jar="/Users/brandondavis/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/brandondavis/Workspace/DEJSONTest/jsonTest/build/intermediates/pre-dexed/debug/library-2.4.0-d68b5b7e2e7b9343b041639e41183e33bb684539.jar" />
+    </item>
+
+</items>
